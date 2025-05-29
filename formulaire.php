@@ -35,7 +35,7 @@ function calculateDiscount( int|float $prixOrigine, int|float $taux) {
 <body>
     <div class="form-container">
         <h2>Calculer une remise</h2>
-        <div class="resultat"><?= $msg ?></div>
+        <div class="message"><?= $msg ?></div>
         <form action="formulaire.php" method="POST">
             <div class="form-group">
                 <label for="nom">Prix d'origine (€) :</label>
