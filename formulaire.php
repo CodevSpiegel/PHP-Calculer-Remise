@@ -17,7 +17,7 @@ else {
     // Vérifier coté PHP que les valeurs saisies ne soient inferieurs ou égal à zéro
     if ($_POST['prixOrigine'] <= 0 || $_POST['remise'] <= 0) 
     {
-        $msg = "La valeur Zéro ou inferieur n'est pas autorisée.";
+        $msg = "Les valeurs Zéro ou inferieurs ne sont pas autorisées.";
     }
     else 
     {
