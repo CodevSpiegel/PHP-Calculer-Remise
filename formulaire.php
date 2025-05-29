@@ -3,14 +3,23 @@
 $price = "0.00";
 $discout = "0.00";
 
-if ( !isset($_POST['prixOrigine']) || !isset($_POST['remise']) ) {
+if ( !isset($_POST['prixOrigine']) || !isset($_POST['remise']) ) 
+{
     $msg = "Merci de remplir les 2 champs du formulaire.";
 }
 else {
+
     $price = number_format($_POST['prixOrigine'], 2, ".");
     $discout = number_format($_POST['remise'], 2, ".");
 
-    $msg = "Le prix final du produit est de ".calculateDiscount( $price, $discout);
+    if ($_POST['prixOrigine'] <= 0 || $_POST['remise'] <= 0) 
+    {
+        $msg = "La valeur Zéro ou inferieur n'est pas autorisée.";
+    }
+    else 
+    {
+        $msg = "Le prix final du produit est de ".calculateDiscount( $price, $discout);
+    }
 }
 
 function calculateDiscount( int|float $prixOrigine, int|float $taux) {
@@ -39,11 +48,11 @@ function calculateDiscount( int|float $prixOrigine, int|float $taux) {
         <form action="formulaire.php" method="POST">
             <div class="form-group">
                 <label for="nom">Prix d'origine (€) :</label>
-                <input type="number" value="<?= $price ?>" id="prixOrigine" name="prixOrigine" step="0.01" min="0.01" required>
+                <input type="number" value="<?= $price ?>" id="prixOrigine" name="prixOrigine" step="0.01" required>
             </div>
             <div class="form-group">
                 <label for="nom">Remise (%) :</label>
-                <input type="number" value="<?= $discout ?>" id="remise" name="remise" step="0.01" min="0.01" required> 
+                <input type="number" value="<?= $discout ?>" id="remise" name="remise" step="0.01" required> 
             </div>
             <div class="form-group">
                 <button type="submit">Calculer</button>
