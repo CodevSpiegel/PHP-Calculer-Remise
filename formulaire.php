@@ -4,12 +4,8 @@ $price = "0.00";
 $discout = "0.00";
 
 // Verifier le présence des variables $_POST
-if ( !isset($_POST['prixOrigine']) || !isset($_POST['remise']) ) 
+if ( isset($_POST['prixOrigine']) && isset($_POST['remise']) ) 
 {
-    $msg = "Merci de remplir les 2 champs du formulaire.";
-}
-else {
-
     // Conserver les valeurs saisies dans les champs du formulaire
     $price = number_format($_POST['prixOrigine'], 2, ".");
     $discout = number_format($_POST['remise'], 2, ".");
@@ -23,6 +19,9 @@ else {
     {
         $msg = "Le prix final du produit est de ".calculateDiscount( $price, $discout);
     }
+}
+else {
+    $msg = "Merci de remplir les 2 champs du formulaire.";
 }
 
 function calculateDiscount( int|float $prixOrigine, int|float $taux) {
